@@ -1,6 +1,7 @@
 package com.example.investimento;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,6 +35,24 @@ public class MainActivity extends AppCompatActivity {
         btnCalcular = findViewById(R.id.btnCalcular);
     }
 
-    public void calcular(float )
+
+    public void calcular (View view) {
+        try {
+            float valorInicial = Float.parseFloat(edtValor.getText().toString());
+            float aplication = Float.parseFloat(edtAplication.getText().toString());
+            float qdtMeses = Float.parseFloat(edtTempo.getText().toString());
+            float taxa = Float.parseFloat(edtTaxa.getText().toString());
+            float aplicationTotal = aplication * qdtMeses;
+            float valorIntermed = valorInicial + aplicationTotal;
+            float valorTaxado = valorIntermed * taxa;
+            float resultado = valorTaxado + valorIntermed;
+            edtResultado.setText(String.format("R$ %.2f", resultado));
+
+        } catch (NumberFormatException e) {
+            // Se houver erro na conversão, exibe uma mensagem
+            edtResultado.setText("Erro: Preencha todos os campos corretamente.");
+
+        }
+    }
 
 }
